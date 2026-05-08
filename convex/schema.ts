@@ -43,11 +43,20 @@ export default defineSchema({
     .index("by_parent", ["parentId"])
     .index("by_project_parent", ["projectId", "parentId"]),
 
+  // NOTE: `updatedAt` / `createdAt` / `ownerId` are all marked optional because
+  // earlier revisions of this schema used different field sets and there are
+  // legacy rows in long-running dev deployments (e.g. `stoic-hound-549`)
+  // missing one or more of them. Marking them optional lets `npx convex dev`
+  // re-push without first having to manually backfill old rows. New code paths
+  // always write `updatedAt` (see convex/conversations.ts).
   conversations: defineTable({
     projectId: v.id("projects"),
     title: v.string(),
-    updatedAt: v.number(),
+    updatedAt: v.optional(v.number()),
+    createdAt: v.optional(v.number()),
+    ownerId: v.optional(v.string()),
   }).index("by_project", ["projectId"]),
+
 
   messages: defineTable({
     conversationId: v.id("conversations"),

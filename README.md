@@ -136,7 +136,14 @@ If you ever get a port conflict (e.g. a previous run hung):
 npm run dev:fresh   # kills 3000/3001/8288/50053 first, then restarts
 ```
 
+> **Running on Replit?** See [`REPLIT_SETUP.md`](./REPLIT_SETUP.md) — the
+> default Replit "Run" button only starts Next.js, but REVDEV needs Convex
+> and Inngest running too, plus secrets configured in the Replit Secrets
+> panel (not `.env.local`). Skipping that setup is why a bare clone "can't
+> open any projects."
+
 ---
+
 
 ## 🔐 What goes in `.env.local` vs `.env.example`
 
