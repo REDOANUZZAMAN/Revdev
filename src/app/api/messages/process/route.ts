@@ -135,10 +135,14 @@ export async function POST(request: Request) {
       content: "Sorry, I encountered an error processing your request.",
     });
 
+    // Note: schema only allows "processing" | "completed" | "cancelled".
+    // The error message content (set above) already communicates failure to the
+    // user, so we mark this message as "completed" to release the processing
+    // lock and let the conversation continue.
     await convex.mutation(api.system.updateMessageStatus, {
       internalKey,
       messageId: assistantMessageId,
-      status: "error",
+      status: "completed",
     });
 
     return NextResponse.json(

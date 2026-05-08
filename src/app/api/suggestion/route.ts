@@ -98,17 +98,22 @@ export async function POST(request: Request) {
       const res = await generateText({
         model: deepseek("deepseek-chat"),
         prompt,
-        maxTokens: 150,
+        // Renamed in ai-sdk v5 from `maxTokens` -> `maxOutputTokens`
+        maxOutputTokens: 150,
       });
       text = res.text;
     } catch (providerError) {
       // Log provider error with minimal prompt info to help debugging in dev
+      const errMsg =
+        providerError instanceof Error
+          ? providerError.message
+          : String(providerError);
       if (process.env.NODE_ENV !== "production") {
         console.error("Suggestion provider error:", providerError);
         console.error("Prompt snippet:", prompt.slice(0, 1000));
         console.error("Request body:", body);
       } else {
-        console.error("Suggestion provider error (production):", providerError?.message || providerError);
+        console.error("Suggestion provider error (production):", errMsg);
       }
       return NextResponse.json({ error: "AI provider error" }, { status: 502 });
     }
