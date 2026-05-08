@@ -141,8 +141,16 @@ npm run dev:fresh   # kills 3000/3001/8288/50053 first, then restarts
 > and Inngest running too, plus secrets configured in the Replit Secrets
 > panel (not `.env.local`). Skipping that setup is why a bare clone "can't
 > open any projects."
+>
+> **Going to production on Vercel?** See [`VERCEL_DEPLOY.md`](./VERCEL_DEPLOY.md)
+> — a 10‑step launch checklist covering production Convex / Inngest / Clerk
+> setup, the **build‑command override** that pushes Convex on every deploy,
+> the Inngest production webhook, the Clerk → Convex JWT wiring, billing
+> alerts, custom domain, and rollback procedure. Includes an env‑var matrix
+> showing exactly which keys differ between dev and prod.
 
 ---
+
 
 
 ## 🔐 What goes in `.env.local` vs `.env.example`
