@@ -1,0 +1,37 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="12" y1="12" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e0e7ff"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background rounded square -->
+  <rect width="48" height="48" rx="12" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle inner glow -->
+  <rect x="1" y="1" width="46" height="46" rx="11" stroke="white" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+  
+  <!-- Code brackets symbol -->
+  <g filter="url(#glow)">
+    <!-- Left bracket < -->
+    <path d="M18 14L10 24L18 34" stroke="url(#iconGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Right bracket > -->
+    <path d="M30 14L38 24L30 34" stroke="url(#iconGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Forward slash / -->
+    <path d="M27 12L21 36" stroke="url(#iconGradient)" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
