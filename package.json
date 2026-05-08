@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next dev",
-    "dev:next": "cross-env NODE_OPTIONS=--max-old-space-size=8192 next dev",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=4096 next dev --webpack",
+    "dev:next": "cross-env NODE_OPTIONS=--max-old-space-size=4096 next dev --webpack",
     "dev:convex": "npx convex dev",
-    "dev:inngest": "inngest.exe dev",
+    "dev:inngest": "npx inngest-cli@latest dev",
     "dev:all": "concurrently -n next,convex,inngest -c cyan,magenta,yellow \"npm:dev:next\" \"npm:dev:convex\" \"npm:dev:inngest\"",
     "dev:fresh": "npm run clean:ports && npm run dev:all",
     "clean:ports": "powershell -NoProfile -Command \"Get-NetTCPConnection -LocalPort 3000,3001,8288,50053 -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { try { Stop-Process -Id $_ -Force -ErrorAction Stop; Write-Host ('Killed PID ' + $_) } catch { Write-Host ('Could not kill ' + $_) } }\"",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
